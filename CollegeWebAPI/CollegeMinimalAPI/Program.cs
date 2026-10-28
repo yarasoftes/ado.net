@@ -13,6 +13,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Включаем поддержку статических файлов (наш index.html)
+app.UseStaticFiles();
+
 var connectionString = app.Configuration.GetConnectionString("DefaultConnection") 
     ?? @"Server=.\SQLEXPRESS;Database=CollegeDB;Trusted_Connection=True;TrustServerCertificate=True;";
 

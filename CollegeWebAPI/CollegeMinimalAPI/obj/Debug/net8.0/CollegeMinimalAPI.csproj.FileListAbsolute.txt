@@ -1,5 +1,6 @@
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\appsettings.json
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\CollegeMinimalAPI.staticwebassets.runtime.json
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\CollegeMinimalAPI.staticwebassets.endpoints.json
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\CollegeMinimalAPI.exe
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\bin\Debug\net8.0\CollegeMinimalAPI.deps.json
