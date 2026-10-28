@@ -44,7 +44,6 @@ namespace ado.net.Data
             }
         }
 
-        // Демонстрация QuerySingle (требует точного совпадения и наличия ровно одной записи)
         public Student GetByExactName(string fullName)
         {
             string query = "SELECT Id, FullName, GroupId FROM Students WHERE FullName = @Name";
@@ -52,6 +51,22 @@ namespace ado.net.Data
             using (var connection = new SqlConnection(_connectionString))
             {
                 return connection.QuerySingle<Student>(query, new { Name = fullName });
+            }
+        }
+
+        // Пункт 4 и 5: Метод добавления студента
+        public int CreateStudent(Student student)
+        {
+            // OUTPUT INSERTED.Id позволяет получить сгенерированный базой данных ID
+            string query = @"
+                INSERT INTO Students (FullName, GroupId) 
+                OUTPUT INSERTED.Id 
+                VALUES (@FullName, @GroupId)";
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                // QuerySingle<int> ожидает ровно один результат — ID новой строки
+                return connection.QuerySingle<int>(query, student);
             }
         }
     }

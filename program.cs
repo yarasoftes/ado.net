@@ -49,6 +49,7 @@ namespace ado.net
                 Console.WriteLine("2. Найти по части имени (Query)");
                 Console.WriteLine("3. Найти по ID (QueryFirstOrDefault)");
                 Console.WriteLine("4. Найти по точному ФИО (QuerySingle)");
+                Console.WriteLine("5. Добавить нового студента (CreateStudent)");
                 Console.WriteLine("0. Назад");
                 Console.Write("Выбор: ");
 
@@ -85,11 +86,26 @@ namespace ado.net
                         Console.WriteLine(student.ToString());
                         Console.ReadKey();
                     }
+                    else if (choice == "5")
+                    {
+                        Console.WriteLine("\n--- Добавление студента ---");
+                        Console.Write("Введите ФИО студента: ");
+                        string fullName = Console.ReadLine();
+                        
+                        Console.Write("Введите ID группы: ");
+                        if (int.TryParse(Console.ReadLine(), out int groupId))
+                        {
+                            Student newStudent = new Student { FullName = fullName, GroupId = groupId };
+                            int newId = repo.CreateStudent(newStudent);
+                            
+                            Console.WriteLine($"\nСтудент успешно добавлен! Присвоен ID: {newId}");
+                            Console.ReadKey();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"\nОшибка: {ex.Message}");
-                    Console.WriteLine("(QuerySingle выдает ошибку, если найдено 0 или больше 1 записи)");
                     Console.ReadKey();
                 }
             }
@@ -145,7 +161,6 @@ namespace ado.net
                 catch (Exception ex)
                 {
                     Console.WriteLine($"\nОшибка: {ex.Message}");
-                    Console.WriteLine("(QuerySingle выдает ошибку, если найдено 0 или больше 1 записи)");
                     Console.ReadKey();
                 }
             }
