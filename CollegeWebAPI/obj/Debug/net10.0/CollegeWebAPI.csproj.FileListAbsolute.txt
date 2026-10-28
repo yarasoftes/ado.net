@@ -16,7 +16,6 @@ C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\CollegeWebAP
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\CollegeWebAPI.dll
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\CollegeWebAPI.pdb
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\Dapper.dll
-C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\Microsoft.Data.SqlClient.dll
 C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\bin\Debug\net10.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll

@@ -9,7 +9,6 @@
       "CollegeWebAPI/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.89",
-          "Microsoft.AspNetCore.OpenApi": "10.0.7",
           "Microsoft.Data.SqlClient": "7.1.1",
           "Swashbuckle.AspNetCore": "10.3.1"
         },
@@ -22,17 +21,6 @@
           "lib/net10.0/Dapper.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.1.89.60231"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.OpenApi/10.0.7": {
-        "dependencies": {
-          "Microsoft.OpenApi": "2.7.5"
-        },
-        "runtime": {
-          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "assemblyVersion": "10.0.7.0",
-            "fileVersion": "10.0.726.21808"
           }
         }
       },
@@ -317,13 +305,6 @@
       "sha512": "sha512-1VjFE664wnxvuhlgP8kS4PeFFF4jqD3VkbIHW6Zlc52zuibgcz5ICnIHcQXlTp6pURpPNGLV0ZpNe5x9KePJnA==",
       "path": "dapper/2.1.89",
       "hashPath": "dapper.2.1.89.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.OpenApi/10.0.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vKiAcGXG0BwNVw3bOjjWRLnp9tR18dR7MiwpvC94h0yFS+zfnzGHzS/JmmgwUdRixrGxrlIMRAWrVc+2DfAGlg==",
-      "path": "microsoft.aspnetcore.openapi/10.0.7",
-      "hashPath": "microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512"
     },
     "Microsoft.Bcl.Cryptography/9.0.18": {
       "type": "package",
