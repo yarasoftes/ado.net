@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using AdoNetLesson8.Data;
+using AdoNetLesson8.Models;
 
-namespace AdoNetLesson7
+namespace AdoNetLesson8
 {
     class Program
     {
@@ -9,59 +11,112 @@ namespace AdoNetLesson7
 
         static void Main(string[] args)
         {
-            // Создаем экземпляр репозитория (Слой доступа к данным)
-            StudentRepository repository = new StudentRepository(connectionString);
+            StudentRepository studentRepo = new StudentRepository(connectionString);
+            GroupRepository groupRepo = new GroupRepository(connectionString);
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== Меню Учебного Заведения (Слоистая архитектура) ===");
-                Console.WriteLine("1. Показать всех студентов");
-                Console.WriteLine("2. Найти студента по имени");
+                Console.WriteLine("=== Главное меню (Слоистая архитектура) ===");
+                Console.WriteLine("1. Работа со студентами");
+                Console.WriteLine("2. Работа с группами");
                 Console.WriteLine("0. Выход");
-                Console.Write("Выберите действие: ");
+                Console.Write("Выберите раздел: ");
 
                 string choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
-                        var allStudents = repository.GetAll();
-                        PrintStudents(allStudents);
+                        StudentsMenu(studentRepo);
                         break;
                     case "2":
-                        Console.Write("Введите имя (или часть имени): ");
-                        string name = Console.ReadLine();
-                        var foundStudents = repository.FindByName(name);
-                        PrintStudents(foundStudents);
+                        GroupsMenu(groupRepo);
                         break;
                     case "0":
                         return;
-                    default:
-                        Console.WriteLine("Неверный выбор. Нажмите любую клавишу...");
-                        Console.ReadKey();
-                        break;
                 }
             }
         }
 
-        // Вспомогательный метод View для вывода списка студентов на экран
-        private static void PrintStudents(List<Student> students)
+        static void StudentsMenu(StudentRepository repo)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Студенты ===");
+                Console.WriteLine("1. Показать всех");
+                Console.WriteLine("2. Найти по имени");
+                Console.WriteLine("0. Назад");
+                Console.Write("Выбор: ");
+
+                string choice = Console.ReadLine();
+                if (choice == "0") break;
+
+                List<Student> students = new List<Student>();
+
+                if (choice == "1")
+                {
+                    students = repo.GetAll();
+                }
+                else if (choice == "2")
+                {
+                    Console.Write("Введите имя: ");
+                    students = repo.FindByName(Console.ReadLine());
+                }
+                else continue;
+
+                PrintList(students);
+            }
+        }
+
+        static void GroupsMenu(GroupRepository repo)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Группы ===");
+                Console.WriteLine("1. Показать все");
+                Console.WriteLine("2. Найти по названию");
+                Console.WriteLine("0. Назад");
+                Console.Write("Выбор: ");
+
+                string choice = Console.ReadLine();
+                if (choice == "0") break;
+
+                List<Group> groups = new List<Group>();
+
+                if (choice == "1")
+                {
+                    groups = repo.GetAll();
+                }
+                else if (choice == "2")
+                {
+                    Console.Write("Введите название: ");
+                    groups = repo.FindByName(Console.ReadLine());
+                }
+                else continue;
+
+                PrintList(groups);
+            }
+        }
+
+        // Универсальный метод для вывода любого списка (благодаря override ToString)
+        static void PrintList<T>(List<T> items)
         {
             Console.WriteLine("\n--- Результат ---");
-            if (students.Count == 0)
+            if (items.Count == 0)
             {
-                Console.WriteLine("Студенты не найдены.");
+                Console.WriteLine("Данные не найдены.");
             }
             else
             {
-                foreach (var student in students)
+                foreach (var item in items)
                 {
-                    // Здесь работает переопределенный метод ToString() из класса Student
-                    Console.WriteLine(student.ToString());
+                    Console.WriteLine(item.ToString());
                 }
             }
-            Console.WriteLine("\nНажмите любую клавишу для возврата в меню...");
+            Console.WriteLine("\nНажмите любую клавишу...");
             Console.ReadKey();
         }
     }
