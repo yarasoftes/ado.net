@@ -1,4 +1,4 @@
-namespace AdoNetLesson8.Models
+namespace ado.net.Models
 {
     public class Student
     {

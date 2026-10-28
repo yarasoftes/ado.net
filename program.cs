@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using AdoNetLesson8.Data;
-using AdoNetLesson8.Models;
+using ado.net.Data;
+using ado.net.Models;
 
-namespace AdoNetLesson8
+namespace ado.net
 {
     class Program
     {
@@ -17,7 +17,7 @@ namespace AdoNetLesson8
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== Главное меню (Слоистая архитектура) ===");
+                Console.WriteLine("=== Главное меню (Работа с Dapper) ===");
                 Console.WriteLine("1. Работа со студентами");
                 Console.WriteLine("2. Работа с группами");
                 Console.WriteLine("0. Выход");
@@ -45,28 +45,53 @@ namespace AdoNetLesson8
             {
                 Console.Clear();
                 Console.WriteLine("=== Студенты ===");
-                Console.WriteLine("1. Показать всех");
-                Console.WriteLine("2. Найти по имени");
+                Console.WriteLine("1. Показать всех (Query)");
+                Console.WriteLine("2. Найти по части имени (Query)");
+                Console.WriteLine("3. Найти по ID (QueryFirstOrDefault)");
+                Console.WriteLine("4. Найти по точному ФИО (QuerySingle)");
                 Console.WriteLine("0. Назад");
                 Console.Write("Выбор: ");
 
                 string choice = Console.ReadLine();
                 if (choice == "0") break;
 
-                List<Student> students = new List<Student>();
-
-                if (choice == "1")
+                try
                 {
-                    students = repo.GetAll();
+                    if (choice == "1")
+                    {
+                        PrintList(repo.GetAll());
+                    }
+                    else if (choice == "2")
+                    {
+                        Console.Write("Введите часть имени: ");
+                        PrintList(repo.FindByName(Console.ReadLine()));
+                    }
+                    else if (choice == "3")
+                    {
+                        Console.Write("Введите ID: ");
+                        if (int.TryParse(Console.ReadLine(), out int id))
+                        {
+                            Student student = repo.GetById(id);
+                            Console.WriteLine("\n--- Результат ---");
+                            Console.WriteLine(student == null ? "Студент не найден." : student.ToString());
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (choice == "4")
+                    {
+                        Console.Write("Введите точное ФИО: ");
+                        Student student = repo.GetByExactName(Console.ReadLine());
+                        Console.WriteLine("\n--- Результат ---");
+                        Console.WriteLine(student.ToString());
+                        Console.ReadKey();
+                    }
                 }
-                else if (choice == "2")
+                catch (Exception ex)
                 {
-                    Console.Write("Введите имя: ");
-                    students = repo.FindByName(Console.ReadLine());
+                    Console.WriteLine($"\nОшибка: {ex.Message}");
+                    Console.WriteLine("(QuerySingle выдает ошибку, если найдено 0 или больше 1 записи)");
+                    Console.ReadKey();
                 }
-                else continue;
-
-                PrintList(students);
             }
         }
 
@@ -76,32 +101,56 @@ namespace AdoNetLesson8
             {
                 Console.Clear();
                 Console.WriteLine("=== Группы ===");
-                Console.WriteLine("1. Показать все");
-                Console.WriteLine("2. Найти по названию");
+                Console.WriteLine("1. Показать все (Query)");
+                Console.WriteLine("2. Найти по части названия (Query)");
+                Console.WriteLine("3. Найти по ID (QueryFirstOrDefault)");
+                Console.WriteLine("4. Найти по точному названию (QuerySingle)");
                 Console.WriteLine("0. Назад");
                 Console.Write("Выбор: ");
 
                 string choice = Console.ReadLine();
                 if (choice == "0") break;
 
-                List<Group> groups = new List<Group>();
-
-                if (choice == "1")
+                try
                 {
-                    groups = repo.GetAll();
+                    if (choice == "1")
+                    {
+                        PrintList(repo.GetAll());
+                    }
+                    else if (choice == "2")
+                    {
+                        Console.Write("Введите часть названия: ");
+                        PrintList(repo.FindByName(Console.ReadLine()));
+                    }
+                    else if (choice == "3")
+                    {
+                        Console.Write("Введите ID: ");
+                        if (int.TryParse(Console.ReadLine(), out int id))
+                        {
+                            Group group = repo.GetById(id);
+                            Console.WriteLine("\n--- Результат ---");
+                            Console.WriteLine(group == null ? "Группа не найдена." : group.ToString());
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (choice == "4")
+                    {
+                        Console.Write("Введите точное название: ");
+                        Group group = repo.GetByExactName(Console.ReadLine());
+                        Console.WriteLine("\n--- Результат ---");
+                        Console.WriteLine(group.ToString());
+                        Console.ReadKey();
+                    }
                 }
-                else if (choice == "2")
+                catch (Exception ex)
                 {
-                    Console.Write("Введите название: ");
-                    groups = repo.FindByName(Console.ReadLine());
+                    Console.WriteLine($"\nОшибка: {ex.Message}");
+                    Console.WriteLine("(QuerySingle выдает ошибку, если найдено 0 или больше 1 записи)");
+                    Console.ReadKey();
                 }
-                else continue;
-
-                PrintList(groups);
             }
         }
 
-        // Универсальный метод для вывода любого списка (благодаря override ToString)
         static void PrintList<T>(List<T> items)
         {
             Console.WriteLine("\n--- Результат ---");

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using AdoNetLesson8.Models;
+using Dapper;
+using ado.net.Models;
 
-namespace AdoNetLesson8.Data
+namespace ado.net.Data
 {
     public class StudentRepository
     {
@@ -15,55 +16,43 @@ namespace AdoNetLesson8.Data
 
         public List<Student> GetAll()
         {
-            var students = new List<Student>();
             string query = "SELECT Id, FullName, GroupId FROM Students ORDER BY Id";
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
-                using (var command = new SqlCommand(query, connection))
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        students.Add(new Student
-                        {
-                            Id = reader.GetInt32(0),
-                            FullName = reader.GetString(1),
-                            GroupId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
-                        });
-                    }
-                }
+                return connection.Query<Student>(query).AsList();
             }
-            return students;
+        }
+
+        public Student GetById(int id)
+        {
+            string query = "SELECT Id, FullName, GroupId FROM Students WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.QueryFirstOrDefault<Student>(query, new { Id = id });
+            }
         }
 
         public List<Student> FindByName(string name)
         {
-            var students = new List<Student>();
             string query = "SELECT Id, FullName, GroupId FROM Students WHERE FullName LIKE @Name ORDER BY Id";
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
-                using (var command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Name", $"%{name}%");
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            students.Add(new Student
-                            {
-                                Id = reader.GetInt32(0),
-                                FullName = reader.GetString(1),
-                                GroupId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
-                            });
-                        }
-                    }
-                }
+                return connection.Query<Student>(query, new { Name = $"%{name}%" }).AsList();
             }
-            return students;
+        }
+
+        // Демонстрация QuerySingle (требует точного совпадения и наличия ровно одной записи)
+        public Student GetByExactName(string fullName)
+        {
+            string query = "SELECT Id, FullName, GroupId FROM Students WHERE FullName = @Name";
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                return connection.QuerySingle<Student>(query, new { Name = fullName });
+            }
         }
     }
 }
