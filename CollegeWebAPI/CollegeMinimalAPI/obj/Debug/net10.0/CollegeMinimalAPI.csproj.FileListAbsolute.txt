@@ -1,0 +1,9 @@
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.csproj.AssemblyReference.cache
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.AssemblyInfoInputs.cache
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.AssemblyInfo.cs
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.csproj.CoreCompileInputs.cache
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\yarasoftes\Desktop\ado.net\CollegeWebAPI\CollegeMinimalAPI\obj\Debug\net10.0\CollegeMinimalAPI.sourcelink.json
